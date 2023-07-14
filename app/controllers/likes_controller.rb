@@ -10,7 +10,7 @@ class LikesController < ApplicationController
     respond_to do |format|
       format.turbo_stream do
         render turbo_stream: turbo_stream.replace(
-          "post#{@post.id}actions",
+          "post#{@post.id}action",
           partial: 'posts/post_action',
           locals: {post:@post}
         )
