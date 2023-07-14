@@ -1,4 +1,4 @@
-<div id="<%= dom_id post %>">
+<div class="my-3" id="<%= dom_id post %>">
 
   <div class="card" style="width: 25rem;">
     <div class="card-header bg-white">
@@ -46,6 +46,7 @@
           <span class="sr-only">Next</span>
         </a>
       </div>
+      <%=render 'posts/post_action', post: post %>
 
 
       <p class="card-text"><span class="fw-bold"><%=post.user.username %></span> <%=post.caption %> </p>

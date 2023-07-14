@@ -1,0 +1,10 @@
+<%= turbo_frame_tag "post#{post.id}action" do %>
+<div class="d-flex justify-content-start align-items-center gap-1 mb-3">
+  <%=button_to toggle_like_path(post_id: post.id), method: :post, style: "border:none; background:none" do %>
+  <i class="<%= post.likes.find_by(user: current_user)? "bi-heart-fill color-red" : "bi bi-heart" %> " style="font-size: 1.5rem;"></i>
+<%end%>
+</div>
+
+
+<small class="fw-bold my-1"><%= pluralize(post.likes.count, "like") %> </small>
+<% end %>
