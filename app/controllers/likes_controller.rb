@@ -1,24 +1,39 @@
 class LikesController < ApplicationController
-  before_action :set_post
+  before_action :set_likeable
 
   def toggle_like
-    if(@like = @post.likes.find_by(user: current_user))
+
+    if(@like = @likeable.likes.find_by(user: current_user))
       @like.destroy
     else
-      @post.likes.create(user: current_user)
+      @likeable.likes.create(user: current_user)
     end
     respond_to do |format|
+      if params[:likeable_type] == "Post"
       format.turbo_stream do
         render turbo_stream: turbo_stream.replace(
-          "post#{@post.id}action",
+          "post#{@likeable.id}action",
           partial: 'posts/post_action',
-          locals: {post:@post}
+          locals: {post:@likeable}
         )
+        end
+      elsif params[:likeable_type] == "Comment"
+      format.turbo_stream do
+        render turbo_stream: turbo_stream.replace(
+          "comment#{@likeable.id}action",
+          partial: 'posts/comment_action',
+          locals: {comment:@likeable}
+        )
+      end
       end
     end
   end
   private
-  def set_post
-    @post = Post.find(params[:post_id])
+  def set_likeable
+    if params[:likeable_type] == "Post"
+      @likeable  = Post.find(params[:likeable_id])
+    elsif params[:likeable_type] == "Comment"
+      @likeable  = Comment.find(params[:likeable_id])
+    end
   end
 end

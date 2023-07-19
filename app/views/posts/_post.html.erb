@@ -10,7 +10,8 @@
             <%=image_tag 'user_picture.png' , class: 'img-thumbnail rounded-circle', style: 'width: 10%' %>
           <%end %>
           <span class="fw-bold mx-2 "><%=post.user.username %></span>
-      </div>
+          <small class="text-muted"><%= time_ago_in_words(post.created_at) %></small>
+        </div>
         <div>
           <div class="dropdown">
             <a class="text-dark fs-4" style="text-decoration: none;" href="#" role='button' data-bs-toggle="dropdown" aria-expanded="false">
@@ -48,15 +49,18 @@
 
 
       <p class="card-text"><span class="fw-bold"><%=post.user.username %></span> <%=post.caption %> </p>
-      <small class="text-muted"><%= time_ago_in_words(post.created_at) %></small>
+      <%= render 'posts/post_comments', post: post %>
     </div>
-    <div class="card-footer d-flex justify-content-between bg-white ">
-      <input type="text" class="w-75" style="border:none;" placeholder="Add a comment ...">
-      <a class="text-primary">Post</a>
-      <i class="bi bi-bookmark" style="font-size: 1.5rem;"></i>
+      <%=form_with url: comments_path, method: :post , data: {controller: "comments", action: 'turbo:submit-end->comments#clear'} do |f|%>
+        <div class="card-footer d-flex justify-content-between bg-white ">
+          <%=f.hidden_field :commentable_id, value: post.id %>
+          <%=f.hidden_field :commentable_type, value: "Post" %>
+          <%= f.text_area :comment_body, class: 'w-75', placeholder: "Add a comment...", style: 'border:none' %>
+          <%=f.submit "Post" , class: 'text-primary fw-bold', style: "background:none; border:none" %>
+          <i class="bi bi-bookmark" style="font-size: 1.5rem;"></i>
+        </div>
+      <% end %>
 
-
-    </div>
   </div>
 
 </div>

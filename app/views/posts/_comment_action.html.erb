@@ -1,0 +1,28 @@
+<div id="comment<%=comment.id%>action">
+  <div class="d-flex justify-content-start align-items-center gap-1 mb-3">
+    <%=button_to toggle_like_path(likeable_id: comment.id, likeable_type: "Comment" ), method: :post, style: "border:none; background:none", id: "comment#{comment.id}actions-likeBtn" do %>
+      <i class="<%= comment.likes.find_by(user: current_user)? "bi-heart-fill color-red" : "bi bi-heart" %> " style="font-size: 1.5rem;"></i>
+    <%end%>
+  </div>
+
+  <a href='#' data-bs-toggle="modal" data-bs-target="#comment<%=comment.id%>LikersModal" style='text-decoration: none' class="text-dark">
+    <small class="fw-bold my-1" ><%= pluralize(comment.likes.count, "like") %> </small>
+  </a>
+  <!-- Modal -->
+  <div class="modal fade" id="comment<%=comment.id%>LikersModal" tabindex="-1" aria-labelledby="comment<%=comment.id%>LikersModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="comment<%=comment.id%>LikersModalLabel">Comment Likes</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <% comment.likers.each do |liker| %>
+            <%= render 'posts/liker' , liker: liker %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
