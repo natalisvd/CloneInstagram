@@ -5,7 +5,11 @@
     <%else%>
       <%=image_tag 'user_picture.png' , class: 'img-thumbnail rounded-circle', style: 'width: 10%' %>
     <%end %>    <div class="d-flex flex-column mx-3">
-      <small class=" text-dark fw-bold mt-2" style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width:10rem;"><%=liker.username %></small>
+      <small class=" text-dark fw-bold mt-2" style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width:10rem;">
+        <%= link_to liker, class:'a-decoration-none', data: {turbo_frame: "_top"} do %>
+          <%=liker.username %>
+          <%end %>
+          </small>
     </div>
 
   </div>

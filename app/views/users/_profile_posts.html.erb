@@ -1,0 +1,27 @@
+<div class="container d-flex flex-column">
+  <div class="d-flex justify-content-center align-items-center">
+    <div class=" w-content border-2 border-top border-dark gap-1">
+      <i class="bi bi-grid-3x3"></i>
+      <small>Posts</small>
+    </div>
+  </div>
+
+  <div class="row justify-content-center align-items-center">
+      <% user.posts.each do |post| %>
+        <div class="col-lg-4 col-md-6 col-sm-8 p-3 mb-4 profile-post" style="height: 20rem;">
+          <%=link_to post do %>
+            <%= image_tag post.images.first, class: 'img-thumbnail', style: 'width:100%; height:20rem; object-fit:cover' %>
+            <div class ='d-flex align-items-center justify-content-center gap-2 w-100 profile-post-inf'>
+              <i class="bi bi-heart-fill text-white"></i>
+              <small class="text-white fw-bold"><%=post.likes.count %></small>
+              <i class="bi bi-chat-fill text-white"></i>
+              <small class="text-white fw-bold"><%=post.comments.count %></small>
+            </div>
+            <%if post.images.count > 1  %>
+            <i class="bi bi-images text-white multiple-images"></i>
+            <% end %>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+</div>

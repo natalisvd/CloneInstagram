@@ -6,9 +6,13 @@
     <%end %>
   <% post.comments.last(3).each do |comment| %>
 
-    <p class="card-text m-0"> <span class="fw-bold"><%=comment.user.username %></span> <span><%=comment.body %></span>
+    <p class="card-text m-0">
+      <%= link_to comment.user, class:'a-decoration-none', data: {turbo_frame: "_top"} do %>
+        <span class="fw-bold"><%=comment.user.username %></span>
+        <%end %>
+        <span><%=comment.body %></span>
     </p>
-    <%=render 'posts/comment_action', comment: comment, postm: 'm' %>
+    <%#=render 'posts/comment_action', comment: comment%>
   <%end %>
 
   <!-- Modal -->
