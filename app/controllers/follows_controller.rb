@@ -2,15 +2,15 @@ class FollowsController < ApplicationController
   before_action :set_user, only: [:follow, :unfollow, :cancel_request]
   before_action :set_follow_req, only: [:accept_follow, :decline_follow]
   def follow
-    current_users.follow(@user)
+    current_user.follow(@user)
     redirect_back(fallback_location: root_path)
   end
   def cancel_request
-    current_users.cancel_request(@user)
+    current_user.cancel_request(@user)
     redirect_back(fallback_location: root_path)
   end
   def unfollow
-    current_users.unfollow(@user)
+    current_user.unfollow(@user)
     redirect_back(fallback_location: root_path)
   end
 
