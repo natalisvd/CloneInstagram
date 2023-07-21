@@ -1,0 +1,24 @@
+<%=turbo_frame_tag 'search_result'  do%>
+  <% users.each do |u| %>
+    <li class="mt-3">
+      <div class="d-flex justify-content-between my-2">
+        <div class="d-flex">
+          <%if u.profile_picture.attached? %>
+            <%=image_tag u.profile_picture, class: 'img-thumbnail rounded-circle', style: 'width: 2.5rem;' %>
+          <%else%>
+            <%=image_tag 'user_picture.png' , class: 'img-thumbnail rounded-circle', style: 'width: 2.5rem;' %>
+          <%end %>
+          <div class="d-flex flex-column mx-3">
+            <small class=" text-dark fw-bold mt-2" style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width:10rem;">
+              <%= link_to u, class:'a-decoration-none', data: {turbo_frame: "_top"} do %>
+                <%=u.username %>
+              <%end %>
+            </small>
+          </div>
+
+        </div>
+
+      </div>
+    </li>
+  <% end %>
+<% end %>
