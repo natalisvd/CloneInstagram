@@ -9,10 +9,10 @@
     </button>
     <div class="d-flex">
       <div class="collapse navbar-collapse me-5" id="navbarSupportedContent">
-          <%= form_with(url: users_path, method: :get, data: {turbo_frame: 'search_result'}, class: "form-inline my-2 my-lg-0" ) do |f| %>
+          <%= form_with(url: users_path, method: :get, data: {turbo_frame: 'search_result', controller: 'search-results'}, class: "form-inline my-2 my-lg-0" ) do |f| %>
           <div class="dropdown">
             <%=f.text_field :search_query, class:"form-control mr-sm-2 border-0 bg-light", type:"search", placeholder:"Search",
-                            "aria-label":"Search", "data-bs-toggle": 'dropdown', "area-expanded":"false"%>
+                            "aria-label":"Search", "data-bs-toggle": 'dropdown', "area-expanded":"false" , data: {action: "input->search-results#search"}%>
             <ul class="dropdown-menu p-4" style='width:25rem;'>
               <%= render "layouts/search_results", users: [] %>
             </ul>
