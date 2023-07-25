@@ -7,6 +7,7 @@ class User < ApplicationRecord
   has_many :likes
   has_many :comments, as: :commentable
   has_one_attached :profile_picture
+  has_many :stories
 
 
   # has_many :received_requests, class_name: "Follow", foreign_key: 'followed_id'

@@ -2,6 +2,7 @@ class HomeController < ApplicationController
   before_action :set_suggestions
   before_action :set_feeds
   def index
+
   end
   private
   def set_feeds

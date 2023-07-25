@@ -66,7 +66,7 @@
         </ul>
         </div>
 
-        <a type="button" class="text-dark" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        <a type="button" class="text-dark" data-bs-toggle="modal" data-bs-target="#newPost">
           <i class="bi bi-plus-square" style="font-size: 1.5rem;"></i>
         </a>
 
@@ -75,6 +75,11 @@
               <%=image_tag current_user.profile_picture.attached? ? current_user.profile_picture : 'user_picture.png', class: 'img-thumbnail rounded-circle', style: 'width: 10%' %>
           </a>
           <ul class="dropdown-menu">
+            <li><a type="button" class="text-dark" data-bs-toggle="modal" data-bs-target="#newStory">
+              <i class="bi bi-plus-square" style="font-size: 1.5rem;"></i>
+              <small class="fw-bold">Add Story</small>
+
+            </a></li>
             <li> <%= link_to "Profile", user_path(current_user), class: 'dropdown-item' %></li>
             <li> <%= link_to "Setting", edit_user_registration_path, class: 'dropdown-item' %></li>
             <li> <%= button_to "Log out", destroy_user_session_path, class: 'dropdown-item', method: :delete %></li>
@@ -88,3 +93,4 @@
   </div>
 </nav>
 <%=render 'posts/form', post: Post.new %>
+<%=render 'stories/form', story: Story.new %>

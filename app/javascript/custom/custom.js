@@ -11,6 +11,7 @@ function loadFilePond () {
 
 // Get a reference to the file input element
     const inputElement = document.querySelector("#post-images");
+    const inputElement2 = document.querySelector("#story-images");
 
 // Create a FilePond instance
     const pond = FilePond.create(inputElement, {
@@ -18,6 +19,12 @@ function loadFilePond () {
         storeAsFile: true,
         allowMultiple: true,
         allowReorder: true,
+        acceptedFileTypes: ["image/*"]
+    });
+    const pond2 = FilePond.create(inputElement2, {
+        credits: {},
+        storeAsFile: true,
+        allowMultiple: false,
         acceptedFileTypes: ["image/*"]
     });
 }

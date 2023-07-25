@@ -1,7 +1,7 @@
 <%=render 'layouts/flash_messages' %>
 <div class="d-flex justify-content-center my-5 gap-5">
   <div class="d-flex flex-column gap-3">
-    <%= render "story/stories_list" %>
+    <%= render "stories/stories_list" %>
     <div class="flex flex-column">
       <%@feeds.each do |p| %>
         <%= render "posts/post", post: p %>
