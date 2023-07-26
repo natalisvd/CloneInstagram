@@ -5,6 +5,5 @@ class Post < ApplicationRecord
   has_many :comments, as: :commentable, dependent: :destroy
   has_many :likers, through: :likes, source: :user
 
-  validates :images, presence: true, blob: { content_type: :image}
-
+  validates :images, presence: true, blob: { content_type: :image }
 end

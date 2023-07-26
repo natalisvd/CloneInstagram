@@ -1,4 +1,23 @@
-<div class="d-flex flex-column jutify-content-center align-items-center">
-  <%=image_tag 'user_picture.png' , class: 'img-thumbnail rounded-circle border border-2 border-primary', style: 'width: 3.5rem; ' %>
-  <small style="max-width:3.5rem; overflow:hidden; white-space: nowrap; text-overflow: ellipsis;">username</small>
+
+
+
+<a href='#' data-bs-toggle="modal" data-bs-target="#story<%=story.id%>StoriesModal" style='text-decoration: none' class="text-dark">
+  <div class="d-flex flex-column jutify-content-center align-items-center">
+    <%=image_tag story.user.profile_picture.attached? ? story.user.profile_picture : 'user_picture.png', class: 'img-thumbnail rounded-circle border border-2 border-primary', style: 'width: 3.5rem; ' %>
+    <small style="max-width:3.5rem; overflow:hidden; white-space: nowrap; text-overflow: ellipsis;">  <%=story.user.username  %></small>
+  </div>
+</a>
+<!-- Modal -->
+<div class="modal fade" id="story<%=story.id%>StoriesModal" tabindex="-1" aria-labelledby="story<%=story.id%>StoriesModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="story<%=story.id%>StoriesModalLabel">Story Likes</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+          <%= render 'stories/modal_story' , story: story %>
+      </div>
+    </div>
+  </div>
 </div>
